@@ -3,7 +3,8 @@ import React from 'react';
 const Home = () => {
   return (
     <div>
-      Home Component
+      <div>Home Component</div>
+      <button onClick={() => console.log('Clicked button')}>Click Me!</button>
     </div>
   );
 }
