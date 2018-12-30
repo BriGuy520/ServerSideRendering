@@ -27,4 +27,9 @@ const mapStateToProps = (state) => {
   return { users: state.users };
 }
 
+const loadData = () => {
+  console.log("I'm trying to load same data");
+}
+
+export { loadData };
 export default connect(mapStateToProps, { fetchUsers })(UsersList);
