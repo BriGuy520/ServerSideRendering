@@ -16,11 +16,13 @@ app.get('*', (req, res) => {
 
   // take incoming request, look at incoming current path request, look at the
   //  route configuration object and see what needs to be rendered 
-  matchRoutes(Routes, req.path).map(({ route }) => {
-    return route.loadData ? route.loadData() : null;
+  const promises = matchRoutes(Routes, req.path).map(({ route }) => {
+    return route.loadData ? route.loadData(store) : null;
   });
 
-  res.send(renderer(req, store));
+  Promise.all(promises).then(() => {
+    res.send(renderer(req, store));
+  });
 });
 
 app.listen(3000, () => {
